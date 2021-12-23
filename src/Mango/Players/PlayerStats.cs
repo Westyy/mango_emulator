@@ -27,12 +27,11 @@ namespace Mango.Players
         private double _ducketsLastUpdated;
 
 
-        public PlayerStats(int Id, string Username, int RespectPoints, int RespectPointsLeftPlayer, int RespectPointsLeftPet, 
+        public PlayerStats(int Id, int RespectPoints, int RespectPointsLeftPlayer, int RespectPointsLeftPet, 
             int ModTickets, int ModTicketsAbusive, double ModTicketsCoolDown, int ModBans, int ModCautions
-            , double ModMutedUntil, double TimestampLastOnline, double TimestampRegistered, double DucketsLastUpdate)
+            , double ModMutedUntil, double TimestampLastOnline, double TimestampRegistered)
         {
             this._id = Id;   
-            this._username = Username;   
             this._respectPoints = RespectPoints;
             this._respectPointsLeftPlayer = RespectPointsLeftPlayer;
             this._respectPointsLeftPet = RespectPointsLeftPet;
@@ -44,7 +43,6 @@ namespace Mango.Players
             this._modMutedUntil = ModMutedUntil;
             this._timestampLastOnline = TimestampLastOnline;
             this._timestampRegistered = TimestampRegistered;
-            this._ducketsLastUpdated = DucketsLastUpdate;
         }
 
         public int RespectPoints
@@ -157,11 +155,11 @@ namespace Mango.Players
                     {
                         try
                         {
-                            stats = new PlayerStats(Reader.GetInt32("id"), Reader.GetString("username"), Reader.GetInt32("respects"),
+                            stats = new PlayerStats(Reader.GetInt32("id"), Reader.GetInt32("respects"),
                                 Reader.GetInt32("respects_left_player"), Reader.GetInt32("respects_left_bot"), Reader.GetInt32("moderation_tickets"),
                                 Reader.GetInt32("moderation_tickets_abusive"), Reader.GetDouble("moderation_tickets_cooldown"), Reader.GetInt32("moderation_bans"),
                                 Reader.GetInt32("moderation_cautions"), Reader.GetDouble("moderation_muted_until"), Reader.GetDouble("timestamp_last_online"),
-                                Reader.GetDouble("timestamp_registered"), Reader.GetDouble("duckets_last_updated"));
+                                Reader.GetDouble("timestamp_registered"));
                                 data.PlayerStats = stats;
                             return true;
                         }

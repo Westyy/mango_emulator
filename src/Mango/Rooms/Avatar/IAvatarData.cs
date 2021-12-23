@@ -7,8 +7,6 @@ namespace Mango.Rooms.Avatar
 {
     interface IAvatarData
     {
-        int Id { get; }
-        string Username { get; }
-        
+        int Id { get; }        
     }
 }
