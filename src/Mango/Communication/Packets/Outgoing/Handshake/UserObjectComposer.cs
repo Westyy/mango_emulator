@@ -14,13 +14,13 @@ namespace Mango.Communication.Packets.Outgoing.Handshake
             base.WriteInteger(Player.Id);
             base.WriteString(Player.Username);
             base.WriteString(Player.Figure);
-            base.WriteString(Player.Gender == PlayerGender.MALE ? "M" : "F");
+            base.WriteString(Player.Gender == PlayerGender.Male ? "M" : "F");
             base.WriteString(Player.Motto);
-            base.WriteString(Player.AlternativeName);
+            base.WriteString("");
             base.WriteBoolean(false);
-            base.WriteInteger(Player.RespectPoints);
-            base.WriteInteger(Player.RespectPointsLeftPlayer);
-            base.WriteInteger(Player.RespectPointsLeftPet);
+            base.WriteInteger(Player.PlayerStats.RespectPoints);
+            base.WriteInteger(Player.PlayerStats.RespectPointsLeftPlayer);
+            base.WriteInteger(Player.PlayerStats.RespectPointsLeftPet);
             base.WriteBoolean(true); // Friends stream active
             base.WriteString(""); // last online?
             base.WriteBoolean(false); // Can change name

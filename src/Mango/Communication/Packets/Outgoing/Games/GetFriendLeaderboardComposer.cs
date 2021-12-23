@@ -22,7 +22,7 @@ namespace Mango.Communication.Packets.Outgoing.Games
             base.WriteInteger(1); // position?
             base.WriteString(Player.Username);
             base.WriteString(Player.Figure);
-            base.WriteString(Player.Gender == PlayerGender.MALE ? "m" : "f");
+            base.WriteString(Player.Gender == PlayerGender.Male ? "m" : "f");
             base.WriteInteger(1);
             base.WriteInteger(0);
         }

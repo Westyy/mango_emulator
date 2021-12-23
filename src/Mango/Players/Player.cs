@@ -216,6 +216,7 @@ namespace Mango.Players
         {
             if (_playerstats.LoadPlayerStats(this))
             {
+                
                 log.Debug("<Player " + this.Id + "> Stats has been initialized.");
                 return true;
             }

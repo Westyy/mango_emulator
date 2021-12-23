@@ -25,11 +25,11 @@ namespace Mango.Players.Wardrobe
             switch (Gender.ToLower())
             {
                 case "m":
-                    this.Gender = PlayerGender.MALE;
+                    this.Gender = PlayerGender.Male;
                     break;
 
                 case "f":
-                    this.Gender = PlayerGender.FEMALE;
+                    this.Gender = PlayerGender.Female;
                     break;
             }
         }

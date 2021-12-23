@@ -159,7 +159,7 @@ namespace Mango.Communication.Packets.Incoming.Catalog
             int TotalCreditCost = Amount > 1 ? ((Item.CostCredits * Amount) - ((int)Math.Floor((double)Amount / 6) * Item.CostCredits)) : Item.CostCredits;
             int TotalPixelCost = Amount > 1 ? ((Item.CostPixels * Amount) - ((int)Math.Floor((double)Amount / 6) * Item.CostPixels)) : Item.CostPixels;
 
-            if (Session.GetPlayer().Credits < TotalCreditCost || Session.GetPlayer().Pixels < TotalPixelCost)
+            if (Session.GetPlayer().Credits < TotalCreditCost || Session.GetPlayer().Duckets < TotalPixelCost)
             {
                 log.Warn("Player with id: " + Session.GetPlayer().Id + " attempted to purchase item with id " + Item.Id + " with the incorrect amount of pixels or credits.");
                 return; // not enough credits or pixels for this item, user most likely tried to packet edit to get here in the first place :-D
@@ -218,8 +218,8 @@ namespace Mango.Communication.Packets.Incoming.Catalog
 
             if (TotalPixelCost > 0)
             {
-                Session.GetPlayer().UpdatePixelBalance(-TotalPixelCost);
-                Session.SendPacket(new HabboActivityPointNotificationComposer(Session.GetPlayer().Pixels, -TotalPixelCost));
+                Session.GetPlayer().UpdateDucketsAmount(-TotalPixelCost);
+                Session.SendPacket(new HabboActivityPointNotificationComposer(Session.GetPlayer().Duckets, -TotalPixelCost));
             }
 
             Dictionary<int, List<int>> NewItems = new Dictionary<int, List<int>>();

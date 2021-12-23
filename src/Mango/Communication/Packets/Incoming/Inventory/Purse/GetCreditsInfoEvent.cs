@@ -14,7 +14,7 @@ namespace Mango.Communication.Packets.Incoming.Inventory.Purse
         public void parse(Session session, ClientPacket packet)
         {
             session.SendPacket(new CreditBalanceComposer(session.GetPlayer().Credits));
-            session.SendPacket(new ActivityPointsComposer(session.GetPlayer().Pixels));
+            session.SendPacket(new ActivityPointsComposer(session.GetPlayer().Duckets));
         }
     }
 }

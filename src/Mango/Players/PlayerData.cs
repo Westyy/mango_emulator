@@ -17,6 +17,7 @@ namespace Mango.Players
         private string _motto;
         private List<string> _tags;
         private PlayerGender _gender;
+        private PlayerStats _stats;
         private int _credits;
         private int _duckets;
         private int _homeRoom;
@@ -168,6 +169,11 @@ namespace Mango.Players
             this.Tags = Data.Tags;         
         }
 
+        public PlayerStats PlayerStats
+        {
+            get { return this._stats; }
+            set { this._stats = value; }
+        }
         public virtual bool InRoom
         {
             get

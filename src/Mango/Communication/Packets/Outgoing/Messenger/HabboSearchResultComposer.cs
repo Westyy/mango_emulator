@@ -24,13 +24,13 @@ namespace Mango.Communication.Packets.Outgoing.Messenger
                 base.WriteString("");
                 base.WriteInteger(0);
                 base.WriteString(player.Online == true ? player.Figure : string.Empty);
-                if (player.TimestampLastOnline == 0)
+                if (player.PlayerStats.TimestampLastOnline == 0)
                 {
                     base.WriteString("Never");
                 }
                 else
                 {
-                    DateTime LastOnline = UnixTimestamp.FromUnixTimestamp(player.TimestampLastOnline);
+                    DateTime LastOnline = UnixTimestamp.FromUnixTimestamp(player.PlayerStats.TimestampLastOnline);
                     base.WriteString(LastOnline.ToShortDateString() + " " + LastOnline.ToShortTimeString());
                 }
             }
@@ -47,13 +47,13 @@ namespace Mango.Communication.Packets.Outgoing.Messenger
                 base.WriteString(string.Empty);
                 base.WriteInteger(0);
                 base.WriteString(player.Online == true ? player.Figure : string.Empty);
-                if (player.TimestampLastOnline == 0)
+                if (player.PlayerStats.TimestampLastOnline == 0)
                 {
                     base.WriteString("Never");
                 }
                 else
                 {
-                    DateTime LastOnline = UnixTimestamp.FromUnixTimestamp(player.TimestampLastOnline);
+                    DateTime LastOnline = UnixTimestamp.FromUnixTimestamp(player.PlayerStats.TimestampLastOnline);
                     base.WriteString(LastOnline.ToShortDateString() + " " + LastOnline.ToShortTimeString());
                 }
             }

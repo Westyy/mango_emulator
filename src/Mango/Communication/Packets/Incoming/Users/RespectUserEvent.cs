@@ -18,7 +18,7 @@ namespace Mango.Communication.Packets.Incoming.Users
                 return;
             }
 
-            if (Session.GetPlayer().RespectPointsLeftPlayer <= 0)
+            if (Session.GetPlayer().PlayerStats.RespectPointsLeftPlayer <= 0)
             {
                 return;
             }
@@ -31,10 +31,10 @@ namespace Mango.Communication.Packets.Incoming.Users
                 return;
             }
 
-            Player.IncreaseRespect();
-            Session.GetPlayer().DecreaseRespectToGivePlayer();
+            Player.PlayerStats.IncreaseRespect();
+            Session.GetPlayer().PlayerStats.DecreaseRespectToGivePlayer();
 
-            Session.GetPlayer().GetAvatar().GetCurrentRoom().GetAvatars().BroadcastPacket(new RespectNotificationComposer(Player, Player.RespectPoints));
+            Session.GetPlayer().GetAvatar().GetCurrentRoom().GetAvatars().BroadcastPacket(new RespectNotificationComposer(Player, Player.PlayerStats.RespectPoints));
             Session.GetPlayer().GetAvatar().GetCurrentRoom().GetAvatars().BroadcastPacket(new WaveComposer(Session.GetPlayer().GetAvatar(), 7));
         }
     }

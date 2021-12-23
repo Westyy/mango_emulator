@@ -12,7 +12,7 @@ namespace Mango.Communication.Packets.Outgoing.Users
         public ProfileInformationComposer(Player Me, PlayerData Data, Player OnlinePlayer = null)
             : base(ServerPacketHeadersNew.ProfileInformationComposer)
         {
-            DateTime Origin = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(Data.TimestampRegistered);
+            DateTime Origin = new DateTime(1970, 1, 1, 0, 0, 0, 0).AddSeconds(Data.PlayerStats.TimestampRegistered);
 
             base.WriteInteger(Data.Id);
             base.WriteString(Data.Username);
@@ -50,7 +50,7 @@ namespace Mango.Communication.Packets.Outgoing.Users
                 }
             }*/
 
-            base.WriteInteger((int)(Math.Round(UnixTimestamp.GetNow()) - Math.Round(Data.TimestampLastOnline)));
+            base.WriteInteger((int)(Math.Round(UnixTimestamp.GetNow()) - Math.Round(Data.PlayerStats.TimestampLastOnline)));
             base.WriteBoolean(true);
         }
     }

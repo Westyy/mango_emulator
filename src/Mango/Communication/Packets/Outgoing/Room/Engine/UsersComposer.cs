@@ -55,7 +55,7 @@ namespace Mango.Communication.Packets.Outgoing.Room.Engine
 
             if (!IsBot)
             {
-                base.WriteString(Avatar.Player.Gender == PlayerGender.MALE ? "m" : "f");
+                base.WriteString(Avatar.Player.Gender == PlayerGender.Male ? "m" : "f");
                 base.WriteInteger(0);
                 base.WriteInteger(0);
                 base.WriteString("");

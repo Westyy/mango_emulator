@@ -33,7 +33,7 @@ namespace Mango.Communication.Packets.Incoming.Avatar
 
             int SlotId = Packet.PopWiredInt();
             string Figure = Packet.PopString();
-            PlayerGender Gender = (Packet.PopString().ToLower() == "m" ? PlayerGender.MALE : PlayerGender.FEMALE);
+            PlayerGender Gender = (Packet.PopString().ToLower() == "m" ? PlayerGender.Male : PlayerGender.Female);
 
             if (SlotId <= 0 || SlotId > MangoStaticSettings.WardrobeClientMaxSlots)
             {
@@ -59,7 +59,7 @@ namespace Mango.Communication.Packets.Incoming.Avatar
 
                         DbCon.SetQuery("UPDATE `wardrobe` SET `figure` = @fig, `gender` = @gen WHERE `id` = @id LIMIT 1;");
                         DbCon.AddParameter("fig", Figure);
-                        DbCon.AddParameter("gen", Gender == PlayerGender.MALE ? "M" : "F");
+                        DbCon.AddParameter("gen", Gender == PlayerGender.Male ? "M" : "F");
                         DbCon.AddParameter("id", Item.Id);
                         DbCon.ExecuteNonQuery();
 
@@ -76,7 +76,7 @@ namespace Mango.Communication.Packets.Incoming.Avatar
             }
             else
             {
-                WardrobeItem NewItem = new WardrobeItem(0, Session.GetPlayer().Id, SlotId, Figure, Gender == PlayerGender.MALE ? "m" : "f");
+                WardrobeItem NewItem = new WardrobeItem(0, Session.GetPlayer().Id, SlotId, Figure, Gender == PlayerGender.Male ? "m" : "f");
 
                 using (var DbCon = Mango.GetServer().GetDatabase().GetConnection())
                 {
@@ -87,7 +87,7 @@ namespace Mango.Communication.Packets.Incoming.Avatar
 
                         DbCon.SetQuery("INSERT INTO `wardrobe` (user_id,slot_id,figure,gender) VALUES(@uid,@sid,@fig,@gen);");
                         DbCon.AddParameter("fig", NewItem.Figure);
-                        DbCon.AddParameter("gen", NewItem.Gender == PlayerGender.MALE ? "M" : "F");
+                        DbCon.AddParameter("gen", NewItem.Gender == PlayerGender.Male ? "M" : "F");
                         DbCon.AddParameter("uid", NewItem.UserId);
                         DbCon.AddParameter("sid", NewItem.SlotId);
                         DbCon.ExecuteNonQuery();

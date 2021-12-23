@@ -162,7 +162,7 @@ namespace Mango.Players
                                 Reader.GetInt32("moderation_tickets_abusive"), Reader.GetDouble("moderation_tickets_cooldown"), Reader.GetInt32("moderation_bans"),
                                 Reader.GetInt32("moderation_cautions"), Reader.GetDouble("moderation_muted_until"), Reader.GetDouble("timestamp_last_online"),
                                 Reader.GetDouble("timestamp_registered"), Reader.GetDouble("duckets_last_updated"));
-
+                                data.PlayerStats = stats;
                             return true;
                         }
                         catch (Exception ex)

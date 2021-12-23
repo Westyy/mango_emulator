@@ -21,7 +21,7 @@ namespace Mango.Communication.Packets.Outgoing.Room.Engine
             }
 
             base.WriteString(Player.Figure);
-            base.WriteString(Player.Gender == PlayerGender.MALE ? "m" : "f");
+            base.WriteString(Player.Gender == PlayerGender.Male ? "m" : "f");
             base.WriteString(Player.Motto);
             base.WriteInteger(Player.Score);
         }

@@ -19,7 +19,7 @@ namespace Mango.Communication.Packets.Outgoing.Avatar
             {
                 base.WriteInteger(Item.Key);
                 base.WriteString(Item.Value.Figure);
-                base.WriteString(Item.Value.Gender == PlayerGender.MALE ? "M" : "F");
+                base.WriteString(Item.Value.Gender == PlayerGender.Male ? "M" : "F");
             }
         }
     }
