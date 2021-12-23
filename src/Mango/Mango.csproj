@@ -511,6 +511,7 @@
     <Compile Include="Players\PlayerData.cs" />
     <Compile Include="Players\PlayerLoader.cs" />
     <Compile Include="Players\PlayerManager.cs" />
+    <Compile Include="Players\PlayerStats.cs" />
     <Compile Include="Players\Process\ProcessComponent.cs" />
     <Compile Include="Players\SSOAuthenticator.cs" />
     <Compile Include="Players\Subscriptions\SubscriptionComponent.cs" />
