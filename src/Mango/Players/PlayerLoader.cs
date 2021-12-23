@@ -54,12 +54,9 @@ namespace Mango.Players
                         try
                         {
                             Players.Add(new PlayerData(Reader.GetInt32("id"), Reader.GetInt32("pm_level"), Reader.GetString("auth_ticket"),
-                                Reader.GetString("username"), Reader.GetString("real_name"), Reader.GetString("figure"), Reader.GetString("motto"),
+                                Reader.GetString("username"), Reader.GetString("figure"), Reader.GetString("motto"),
                                 Reader.GetString("gender"), Reader.GetInt32("credits"), Reader.GetInt32("pixels"), Reader.GetInt32("home_room"),
-                                Reader.GetInt32("score"), Reader.GetInt32("accept_friend_requests"), Reader.GetInt32("config_volume"), Reader.GetInt32("respect_points"),
-                                Reader.GetInt32("respect_left_player"), Reader.GetInt32("respect_left_pet"), Reader.GetString("tags"), Reader.GetInt32("mod_tickets"),
-                                Reader.GetInt32("mod_tickets_abusive"), Reader.GetDouble("mod_tickets_cooldown"), Reader.GetInt32("mod_bans"), Reader.GetInt32("mod_cautions"),
-                                Reader.GetDouble("mod_muted_until_timestamp"), Reader.GetDouble("timestamp_lastvisit"), Reader.GetDouble("timestamp_registered"), Reader.GetDouble("pixels_last_updated")));
+                                Reader.GetInt32("score"), Reader.GetInt32("accept_friend_requests"), Reader.GetInt32("config_volume")));
                         }
                         catch (DatabaseException ex)
                         {
@@ -100,12 +97,9 @@ namespace Mango.Players
                         try
                         {
                             return new PlayerData(Reader.GetInt32("id"), Reader.GetInt32("pm_level"), Reader.GetString("auth_ticket"),
-                                Reader.GetString("username"), Reader.GetString("real_name"), Reader.GetString("figure"), Reader.GetString("motto"),
+                                Reader.GetString("username"), Reader.GetString("figure"), Reader.GetString("motto"),
                                 Reader.GetString("gender"), Reader.GetInt32("credits"), Reader.GetInt32("pixels"), Reader.GetInt32("home_room"),
-                                Reader.GetInt32("score"), Reader.GetInt32("accept_friend_requests"), Reader.GetInt32("config_volume"), Reader.GetInt32("respect_points"),
-                                Reader.GetInt32("respect_left_player"), Reader.GetInt32("respect_left_pet"), Reader.GetString("tags"), Reader.GetInt32("mod_tickets"),
-                                Reader.GetInt32("mod_tickets_abusive"), Reader.GetDouble("mod_tickets_cooldown"), Reader.GetInt32("mod_bans"), Reader.GetInt32("mod_cautions"),
-                                Reader.GetDouble("mod_muted_until_timestamp"), Reader.GetDouble("timestamp_lastvisit"), Reader.GetDouble("timestamp_registered"), Reader.GetDouble("pixels_last_updated"));
+                                Reader.GetInt32("score"), Reader.GetInt32("accept_friend_requests"), Reader.GetInt32("config_volume"));
                         }
                         catch (DatabaseException ex)
                         {
@@ -141,12 +135,9 @@ namespace Mango.Players
                         try
                         {
                             return new PlayerData(Reader.GetInt32("id"), Reader.GetInt32("pm_level"), Reader.GetString("auth_ticket"),
-                                Reader.GetString("username"), Reader.GetString("real_name"), Reader.GetString("figure"), Reader.GetString("motto"),
+                                Reader.GetString("username"), Reader.GetString("figure"), Reader.GetString("motto"),
                                 Reader.GetString("gender"), Reader.GetInt32("credits"), Reader.GetInt32("pixels"), Reader.GetInt32("home_room"),
-                                Reader.GetInt32("score"), Reader.GetInt32("accept_friend_requests"), Reader.GetInt32("config_volume"), Reader.GetInt32("respect_points"),
-                                Reader.GetInt32("respect_left_player"), Reader.GetInt32("respect_left_pet"), Reader.GetString("tags"), Reader.GetInt32("mod_tickets"),
-                                Reader.GetInt32("mod_tickets_abusive"), Reader.GetDouble("mod_tickets_cooldown"), Reader.GetInt32("mod_bans"), Reader.GetInt32("mod_cautions"),
-                                Reader.GetDouble("mod_muted_until_timestamp"), Reader.GetDouble("timestamp_lastvisit"), Reader.GetDouble("timestamp_registered"), Reader.GetDouble("pixels_last_updated"));
+                                Reader.GetInt32("score"), Reader.GetInt32("accept_friend_requests"), Reader.GetInt32("config_volume"));
                         }
                         catch (DatabaseException ex)
                         {

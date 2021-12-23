@@ -272,17 +272,13 @@ namespace Mango.Communication.Sessions
 
         public void TryAuthenticate(string SSOTicket)
         {
-            PlayerData Data = null;
-
-            if (!SSOAuthenticator.TryAuthenticate(SSOTicket, IPAddress, out Data))
+            if (!SSOAuthenticator.TryAuthenticate(SSOTicket, IPAddress, out PlayerData Data))
             {
                 Disconnect();
                 return;
             }
 
-            Player CurrentPlayer = null;
-
-            if (Mango.GetServer().GetPlayerManager().TryGet(Data.Id, out CurrentPlayer))
+            if (Mango.GetServer().GetPlayerManager().TryGet(Data.Id, out Player CurrentPlayer))
             {
                 CurrentPlayer.GetSession().Disconnect();
             }

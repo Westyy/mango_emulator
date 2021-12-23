@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-
-using Mango.Rooms;
 using Mango.Database.Exceptions;
 using MySql.Data.MySqlClient;
 using Mango.Rooms.Avatar;
@@ -22,23 +18,12 @@ namespace Mango.Players
         private List<string> _tags;
         private PlayerGender _gender;
         private int _credits;
-        private int _pixels;
+        private int _duckets;
         private int _homeRoom;
         private int _score;
         private bool _allowFriendRequests;
         private int _clientVolume;
-        private int _respectPoints;
-        private int _respectPointsLeftPlayer;
-        private int _respectPointsLeftPet;
-        private int _modTickets;
-        private int _modTicketsAbusive;
-        private double _modTicketsCooldown;
-        private int _modBans;
-        private int _modCautions;
-        private double _modMutedUntil;
-        private double _timestampLastOnline;
-        private double _timestampRegistered;
-        private double _pixelsLastUpdated;
+   
 
         public int Id
         {
@@ -100,10 +85,10 @@ namespace Mango.Players
             set { this._credits = value; }
         }
 
-        public int Pixels
+        public int Duckets
         {
-            get { return this._pixels; }
-            set { this._pixels = value; }
+            get { return this._duckets; }
+            set { this._duckets = value; }
         }
 
         public int HomeRoom
@@ -130,89 +115,15 @@ namespace Mango.Players
             set { this._clientVolume = value; }
         }
 
-        public int RespectPoints
-        {
-            get { return this._respectPoints; }
-            set { this._respectPoints = value; }
-        }
+        
 
-        public int RespectPointsLeftPlayer
-        {
-            get { return this._respectPointsLeftPlayer; }
-            set { this._respectPointsLeftPlayer = value; }
-        }
-
-        public int RespectPointsLeftPet
-        {
-            get { return this._respectPointsLeftPet; }
-            set { this._respectPointsLeftPet = value; }
-        }
-
-        public int ModTickets
-        {
-            get { return this._modTickets; }
-            set { this._modTickets = value; }
-        }
-
-        public int ModTicketsAbusive
-        {
-            get { return this._modTicketsAbusive; }
-            set { this._modTicketsAbusive = value; }
-        }
-
-        public double ModTicketsCooldown
-        {
-            get { return this._modTicketsCooldown; }
-            set { this._modTicketsCooldown = value; }
-        }
-
-        public int ModBans
-        {
-            get { return this._modBans; }
-            set { this._modBans = value; }
-        }
-
-        public int ModCautions
-        {
-            get { return this._modCautions; }
-            set { this._modCautions = value; }
-        }
-
-        public double ModMutedUntil
-        {
-            get { return this._modMutedUntil; }
-            set { this._modMutedUntil = value; }
-        }
-
-        public double TimestampLastOnline
-        {
-            get { return this._timestampLastOnline; }
-            set { this._timestampLastOnline = value; }
-        }
-
-        public double TimestampRegistered
-        {
-            get { return this._timestampRegistered; }
-            set { this._timestampRegistered = value; }
-        }
-
-        public double PixelsLastUpdated
-        {
-            get { return this._pixelsLastUpdated; }
-            set { this._pixelsLastUpdated = value; }
-        }
-
-        public PlayerData(int Id, int PermissionLevel, string AuthTicket, string Username, string AlternativeName, string Figure,
-            string Motto, string Gender, int Credits, int Pixels, int HomeRoom, int Score, int AllowFriendRequests, int ClientVolume,
-            int RespectPoints, int RespectPointsLeftPlayer, int RespectPointsLeftPet, string Tags, int ModTickets, int ModTicketsAbusive,
-            double ModTicketsCooldown, int ModBans, int ModCautions, double ModMutedUntil, double TimestampLastOnline, double TimestampRegistered,
-            double PixelsLastUpdated)
+        public PlayerData(int Id, int PermissionLevel, string AuthTicket, string Username, string Figure,
+            string Motto, string Gender, int Credits, int Duckets, int HomeRoom, int Score, int AllowFriendRequests, int ClientVolume)
         {
             this.Id = Id;
             this.PermissionLevel = PermissionLevel;
             this.AuthTicket = AuthTicket;
             this.Username = Username;
-            this.AlternativeName = AlternativeName;
             this.Figure = Figure;
             this.Motto = Motto;
 
@@ -222,41 +133,20 @@ namespace Mango.Players
             switch (Gender.ToLower())
             {
                 case "m":
-                    this.Gender = PlayerGender.MALE;
+                    this.Gender = PlayerGender.Male;
                     break;
 
                 case "f":
-                    this.Gender = PlayerGender.FEMALE;
+                    this.Gender = PlayerGender.Female;
                     break;
             }
 
             this.Credits = Credits;
-            this.Pixels = Pixels;
+            this.Duckets = Duckets;
             this.HomeRoom = HomeRoom;
             this.Score = Score;
             this.AllowFriendRequests = AllowFriendRequests == 1 ? true : false;
-            this.ClientVolume = ClientVolume;
-            this.RespectPoints = RespectPoints;
-            this.RespectPointsLeftPlayer = RespectPointsLeftPlayer;
-            this.RespectPointsLeftPet = RespectPointsLeftPet;
-
-            List<string> TagsList = new List<string>();
-
-            foreach (string Str in Tags.Split(','))
-            {
-                TagsList.Add(Str);
-            }
-
-            this.Tags = TagsList;
-            this.ModTickets = ModTickets;
-            this.ModTicketsAbusive = ModTicketsAbusive;
-            this.ModTicketsCooldown = ModTicketsCooldown;
-            this.ModBans = ModBans;
-            this.ModCautions = ModCautions;
-            this.ModMutedUntil = ModMutedUntil;
-            this.TimestampLastOnline = TimestampLastOnline;
-            this.TimestampRegistered = TimestampRegistered;
-            this.PixelsLastUpdated = this.PixelsLastUpdated;
+            this.ClientVolume = ClientVolume;           
         }
 
         public PlayerData(PlayerData Data)
@@ -270,24 +160,12 @@ namespace Mango.Players
             this.Motto = Data.Motto;
             this.Gender = Data.Gender;
             this.Credits = Data.Credits;
-            this.Pixels = Data.Pixels;
+            this.Duckets = Data.Duckets;
             this.HomeRoom = Data.HomeRoom;
             this.Score = Data.Score;
             this.AllowFriendRequests = Data.AllowFriendRequests;
-            this.ClientVolume = Data.ClientVolume;
-            this.RespectPoints = Data.RespectPoints;
-            this.RespectPointsLeftPlayer = Data.RespectPointsLeftPlayer;
-            this.RespectPointsLeftPet = Data.RespectPointsLeftPet;
-            this.Tags = Data.Tags;
-            this.ModTickets = Data.ModTickets;
-            this.ModTicketsAbusive = Data.ModTicketsAbusive;
-            this.ModTicketsCooldown = Data.ModTicketsCooldown;
-            this.ModBans = Data.ModBans;
-            this.ModCautions = Data.ModCautions;
-            this.ModMutedUntil = Data.ModMutedUntil;
-            this.TimestampLastOnline = Data.TimestampLastOnline;
-            this.TimestampRegistered = Data.TimestampRegistered;
-            this.PixelsLastUpdated = Data.PixelsLastUpdated;
+            this.ClientVolume = Data.ClientVolume;       
+            this.Tags = Data.Tags;         
         }
 
         public virtual bool InRoom
@@ -335,9 +213,9 @@ namespace Mango.Players
                     TagString.Append(",");
                 }
 
-                string Gender = this.Gender == PlayerGender.MALE ? "M" : "F";
+                string Gender = this.Gender == PlayerGender.Male ? "M" : "F";
 
-                DbCon.SetQuery("UPDATE `users` SET `username` = @username, `real_name` = @realname, `figure` = @figure, `motto` = @motto, `tags` = @tags, `gender` = @gender, `credits` = @credits, `pixels` = @pixels, `home_room` = @homeroom, `score` = @score, `accept_friend_requests` = @acceptfr, `config_volume` = @configvolume, `respect_points` = @respect, `respect_left_player` = @respectplayer, `respect_left_pet` = @respectpet, `mod_tickets` = @modtickets, `mod_tickets_abusive` = @modticketsabusive, `mod_tickets_cooldown` = @modticketscooldown, `mod_bans` = @modbans, `mod_cautions` = @modcautions, `mod_muted_until_timestamp` = @modmuted, `timestamp_lastvisit` = @lastvisit, `pixels_last_updated` = @pixelsupdated WHERE `id` = @id LIMIT 1;");
+                DbCon.SetQuery("UPDATE `users` SET `username` = @username,  `figure` = @figure, `motto` = @motto, `tags` = @tags, `gender` = @gender, `credits` = @credits, `pixels` = @pixels, `home_room` = @homeroom, `score` = @score WHERE `id` = @id LIMIT 1;");
                 DbCon.AddParameter("username", this.Username);
                 DbCon.AddParameter("realname", this.AlternativeName);
                 DbCon.AddParameter("figure", this.Figure);
@@ -345,22 +223,11 @@ namespace Mango.Players
                 DbCon.AddParameter("tags", TagString.ToString());
                 DbCon.AddParameter("gender", Gender);
                 DbCon.AddParameter("credits", this.Credits);
-                DbCon.AddParameter("pixels", this.Pixels);
+                DbCon.AddParameter("pixels", this.Duckets);
                 DbCon.AddParameter("homeroom", this.HomeRoom);
                 DbCon.AddParameter("score", this.Score);
                 DbCon.AddParameter("acceptfr", this.AllowFriendRequests == true ? "1" : "0");
-                DbCon.AddParameter("configvolume", this.ClientVolume);
-                DbCon.AddParameter("respect", this.RespectPoints);
-                DbCon.AddParameter("respectplayer", this.RespectPointsLeftPlayer);
-                DbCon.AddParameter("respectpet", this.RespectPointsLeftPet);
-                DbCon.AddParameter("modtickets", this.ModTickets);
-                DbCon.AddParameter("modticketsabusive", this.ModTicketsAbusive);
-                DbCon.AddParameter("modticketscooldown", this.ModTicketsCooldown);
-                DbCon.AddParameter("modbans", this.ModBans);
-                DbCon.AddParameter("modcautions", this.ModCautions);
-                DbCon.AddParameter("modmuted", this.ModMutedUntil);
-                DbCon.AddParameter("lastvisit", this.TimestampLastOnline);
-                DbCon.AddParameter("pixelsupdated", this.PixelsLastUpdated);
+                DbCon.AddParameter("configvolume", this.ClientVolume);               
                 DbCon.AddParameter("id", this.Id);
 
                 DbCon.Open();

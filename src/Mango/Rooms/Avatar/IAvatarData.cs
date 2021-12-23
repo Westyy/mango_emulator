@@ -9,7 +9,6 @@ namespace Mango.Rooms.Avatar
     {
         int Id { get; }
         string Username { get; }
-        string Figure { get; }
-        string Motto { get; }
+        
     }
 }

@@ -7,7 +7,7 @@ namespace Mango.Players
 {
     enum PlayerGender
     {
-        MALE,
-        FEMALE
+        Male,
+        Female
     }
 }

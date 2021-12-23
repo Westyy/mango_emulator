@@ -16,10 +16,11 @@ using Mango.Players.Effects;
 using Mango.Players.Process;
 using Mango.Players.Favourites;
 using Mango.Rooms.Avatar;
+using MySql.Data.MySqlClient;
 
 namespace Mango.Players
 {
-    class Player : PlayerData
+    class Player : PlayerData 
     {
         private static readonly ILog log = LogManager.GetLogger("Mango.Players.Player");
 
@@ -83,6 +84,11 @@ namespace Mango.Players
         /// </summary>
         private RoomAvatar _avatar = null;
 
+        ///<summary
+        /// The Player Statististics for this player.
+        //</summary>
+        private PlayerStats _playerstats = null;
+
         /// <summary>
         /// Mark the object as disposed.
         /// </summary>
@@ -97,7 +103,6 @@ namespace Mango.Players
         {
             this._session = Session;
             this._avatar = new RoomAvatar(this);
-
             log.Info("<Player " + this.Id + "> has joined the game.");
         }
 
@@ -111,7 +116,7 @@ namespace Mango.Players
             return this.InitWardrobe() && this.InitFavourites()
                 && this.InitMessenger() && this.InitInventory() && this.InitSubscription()
                 && this.InitSubscription() && this.InitAchievements() && this.InitBadges()
-                && this.InitEffects() && this.InitPermissions();
+                && this.InitEffects() && this.InitPermissions() && this.InitPlayerStats();
         }
 
         public void InitProcess()
@@ -207,6 +212,17 @@ namespace Mango.Players
             return false;
         }
 
+        private bool InitPlayerStats()
+        {
+            if (_playerstats.LoadPlayerStats(this))
+            {
+                log.Debug("<Player " + this.Id + "> Stats has been initialized.");
+                return true;
+            }
+
+            return false;
+        }
+
         private bool InitAchievements()
         {
             this._achievements = new AchievementComponent();
@@ -252,9 +268,9 @@ namespace Mango.Players
             this.Save();
         }
 
-        public void UpdatePixelBalance(int Amount)
+        public void UpdateDucketsAmount(int Amount)
         {
-            this.Pixels += Amount;
+            this.Duckets += Amount;
             this.Save();
         }
 
@@ -270,25 +286,15 @@ namespace Mango.Players
             this.Save();
         }
 
-        public void IncreaseRespect()
-        {
-            base.RespectPoints++;
-            this.Save();
-        }
-
-        public void DecreaseRespectToGivePlayer()
-        {
-            base.RespectPointsLeftPlayer--;
-            this.Save();
-        }
+       
 
         public void UpdateGender(string Gender)
         {
-            PlayerGender GenderEnum = PlayerGender.MALE;
+            PlayerGender GenderEnum = PlayerGender.Male;
 
             if (Gender.ToLower() == "f")
             {
-                GenderEnum = PlayerGender.FEMALE;
+                GenderEnum = PlayerGender.Female;
             }
 
             this.Gender = GenderEnum;
@@ -297,8 +303,7 @@ namespace Mango.Players
 
         public void Mute(int TimeToMute)
         {
-            this.ModMutedUntil = UnixTimestamp.GetNow() + TimeToMute;
-            this.Save();
+            _playerstats.ModMutedUntil = UnixTimestamp.GetNow() + TimeToMute;
         }
 
         public void ChangeMotto(string Motto)
@@ -402,7 +407,7 @@ namespace Mango.Players
         {
             get
             {
-                return (this.ModMutedUntil - UnixTimestamp.GetNow()) > 0;
+                return (_playerstats.ModMutedUntil - UnixTimestamp.GetNow()) > 0;
             }
         }
 
@@ -410,7 +415,7 @@ namespace Mango.Players
         {
             get
             {
-                return Convert.ToInt32(Math.Round((this.ModMutedUntil - UnixTimestamp.GetNow())));
+                return Convert.ToInt32(Math.Round((_playerstats.ModMutedUntil - UnixTimestamp.GetNow())));
             }
         }
 
