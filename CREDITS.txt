@@ -1,0 +1,3 @@
+Meth0d - Snowlight database structure and some code used from Snowlight
+Tweeney - Helping update to the latest client
+Leon - Ideas and motivation
